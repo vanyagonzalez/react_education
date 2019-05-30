@@ -1,0 +1,30 @@
+WEB-012 React.js
+
+Brendan Eik slides
+https://brendaneich.com/wp-content/uploads/2017/12/dotJS-2017.pdf
+
+
+Про CSS: BEM, CSS in JS, CSS Modules
+https://goo.gl/XKZQp7
+
+FLUX
+https://www.youtube.com/watch?v=i__969noyAM
+
+The M in MVC
+https://sites.google.com/site/dhntclub/thiet-ke-web-site/trao-doi/the-m-in-mvc-why-models-are-misunderstood-and-unappreciated
+
+Redux by Dan Abramov
+https://egghead.io/redux
+
+"You might not need Redux" 
+https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
+
+===
+
+1. Is TDD Dead
+https://www.youtube.com/watch?v=z9quxZsLcfo
+2. Gherkin language
+https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language
+3. Test pyramyd
+https://martinfowler.com/bliki/TestPyramid.html
+
