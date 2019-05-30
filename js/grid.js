@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {hashHistory} from 'react-router'
 
 const dataSource = [
-    {firstName: "John", lastName: "Doe", active: false},
-    {firstName: "Mary", lastName: "Moe", active: false},
-    {firstName: "Peter", lastName: "Noname", active: true}
+    {firstName: "John", lastName: "Doe", active: false, id: 1},
+    {firstName: "Mary", lastName: "Moe", active: false, id: 2},
+    {firstName: "Peter", lastName: "Noname", active: true, id: 3}
 ];
 
 
@@ -64,12 +65,14 @@ class GridComponent extends React.Component {
                 </p>
                 <table className="table table-condensed">
                     <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Active</th>
-                    </tr>
+                        <tr>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Active</th>
+                        </tr>
                     </thead>
+
                     <tbody>
                     {records}
                     </tbody>
@@ -88,9 +91,16 @@ class GridRecord extends React.Component {
         this.props.changeActive(e.target.value);
     }
 
+    showUserDetails(e){
+        e.preventDefault();
+        hashHistory.push(`/details/${this.props.record.id}`);
+    }
+
+
     render(){
         let {record} = this.props;
         return <tr>
+            <th onClick={this.showUserDetails.bind(this)}><a href="#">{record.id}</a></th>
             <th>{record.firstName}</th>
             <th><input type="text"  value={record.lastName} onChange={this.handleLastNameChange.bind(this)}/></th>
             <th><input type="checkbox" checked={record.active} onChange={this.props.toggleActive}/></th>
