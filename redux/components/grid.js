@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {hashHistory} from 'react-router'
 import { connect } from 'react-redux'
+import {filterGrid, toggleActive} from '../Actions'
 
 class GridComponent extends React.Component {
     constructor(){
@@ -16,10 +17,8 @@ class GridComponent extends React.Component {
 
     toggleActive(index){
         let {dispatch} = this.props;
-        dispatch({
-            type:"TOGGLE_ACTIVE",
-            value:index
-        });
+        dispatch(toggleActive(index));
+
     }
 
     changeActive(index, newValue){
@@ -32,10 +31,7 @@ class GridComponent extends React.Component {
 
     handleFilterChange(e){
         let {dispatch} = this.props;
-        dispatch({
-            type:"FILTER",
-            value:e.target.value
-        });
+        dispatch(filterGrid(e.target.value));
     }
 
 

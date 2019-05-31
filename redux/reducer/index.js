@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import {TOGGLE_ACTIVE, FILTER, FILTER_DETAILS} from '../Constants'
 
 let gridRecords = [
         {firstName: "John", lastName: "Doe", active: false, id: 1},
@@ -21,11 +22,11 @@ let gridRecords = [
 
 export function grid(state = gridRecords, action){
     switch (action.type) {
-        case "TOGGLE_ACTIVE":
+        case TOGGLE_ACTIVE:
             let newState = [...state];
             newState[action.value].active = !newState[action.value].active;
             return newState;
-        case "FILTER":
+        case FILTER:
             return gridRecords.filter((record)=>{
                 return record.firstName.toUpperCase().includes(action.value.toUpperCase());
             });
@@ -37,7 +38,7 @@ export function grid(state = gridRecords, action){
 
 export function details(state = detailsRecords, action){
     switch (action.type) {
-        case "FILTER_DETAILS":
+        case FILTER_DETAILS:
             return action.value ? detailsRecords.filter((record)=>{
                 return record.id == action.value;
             }) : detailsRecords;
