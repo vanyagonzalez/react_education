@@ -1,7 +1,7 @@
 const path = require('path');
 
 const PATHS = {
-    app: "./js/app_router.js",
+    app: "./redux/containers/app",
     build: path.join(__dirname, 'build')
 };
 
