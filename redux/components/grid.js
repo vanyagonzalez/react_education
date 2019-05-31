@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {hashHistory} from 'react-router'
 import { connect } from 'react-redux'
-import {filterGrid, toggleActive, startLoading, stopLoading, addData} from '../Actions'
+import {filterGrid, toggleActive, loadDataInGrid} from '../actions'
 
 class GridComponent extends React.Component {
     constructor(){
@@ -18,15 +18,7 @@ class GridComponent extends React.Component {
 
     loadData(){
         let {dispatch} = this.props;
-        dispatch(startLoading());
-        fetch('http://localhost:4730')
-            .then(function(response) {
-                return response.json();
-            }).then(function(json) {
-            dispatch(addData(json.gridRecords))
-        }).then(function(){
-            dispatch(stopLoading());
-        })
+        dispatch(loadDataInGrid());
     }
 
 

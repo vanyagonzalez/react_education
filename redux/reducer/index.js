@@ -42,9 +42,14 @@ export function grid(state = gridState, action){
             newState[action.value].active = !newState[action.value].active;
             return newState;
         case FILTER:
-            return gridRecords.filter((record)=>{
-                return record.firstName.toUpperCase().includes(action.value.toUpperCase());
-            });
+            let filteredOutIds = state.records.filter(
+                (record) =>
+                    !record.firstName.toUpperCase().includes(
+                        action.value.toUpperCase()))
+                .map(record => record.id);
+            return Object.assign({}, state,
+                {filtered: filteredOutIds});
+
         default:
             return state
     }

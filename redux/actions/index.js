@@ -40,3 +40,16 @@ export function addData(value) {
     }
 }
 
+export function loadDataInGrid(){
+    return (dispatch)=>{
+        dispatch(startLoading());
+        fetch('http://localhost:4730')
+            .then(function(response) {
+                return response.json();
+            }).then(function(json) {
+            dispatch(addData(json.gridRecords))
+        }).then(function(){
+            dispatch(stopLoading());
+        })
+    }
+}

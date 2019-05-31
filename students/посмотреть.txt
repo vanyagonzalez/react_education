@@ -6,3 +6,5 @@ componentDidUpdate
 Redux Thunk middleware
 GRAPHQL
 Relay -- библиотека устаревшая для graphql
+ddd -- рекомендуется исрользовать
+react native -- https://makeitopen.com/
