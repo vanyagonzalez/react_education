@@ -1,2 +1,8 @@
+npm install -- save redux-thunk
+npm run build -- старт приложения
+
 componentDidMount
 componentDidUpdate
+Redux Thunk middleware
+GRAPHQL
+Relay -- библиотека устаревшая для graphql

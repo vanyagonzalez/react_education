@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {TOGGLE_ACTIVE, FILTER, FILTER_DETAILS} from '../Constants'
+import {TOGGLE_ACTIVE, FILTER, FILTER_DETAILS, START_LOADING, STOP_LOADING, ADD_DATA} from '../Constants'
 
 let gridRecords = [
         {firstName: "John", lastName: "Doe", active: false, id: 1},
@@ -20,8 +20,23 @@ let gridRecords = [
         skills:["Fortran", "Lua", "R#"]
     }];
 
-export function grid(state = gridRecords, action){
+let gridState = {
+    records:[],
+    filtered: [],
+    loading:false
+};
+
+export function grid(state = gridState, action){
     switch (action.type) {
+        case START_LOADING:
+            return Object.assign({}, state, {loading: true});
+        case STOP_LOADING:
+            return Object.assign({}, state, {loading: false});
+        case ADD_DATA:
+            return Object.assign({}, state, {
+                records:[...action.value]
+            });
+
         case TOGGLE_ACTIVE:
             let newState = [...state];
             newState[action.value].active = !newState[action.value].active;

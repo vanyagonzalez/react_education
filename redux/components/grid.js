@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {hashHistory} from 'react-router'
 import { connect } from 'react-redux'
-import {filterGrid, toggleActive} from '../Actions'
+import {filterGrid, toggleActive, startLoading, stopLoading, addData} from '../Actions'
 
 class GridComponent extends React.Component {
     constructor(){
@@ -13,7 +13,22 @@ class GridComponent extends React.Component {
     }
     componentDidMount(){
         this.refs.filterInput && this.refs.filterInput.focus();
+        this.loadData();
     }
+
+    loadData(){
+        let {dispatch} = this.props;
+        dispatch(startLoading());
+        fetch('http://localhost:4730')
+            .then(function(response) {
+                return response.json();
+            }).then(function(json) {
+            dispatch(addData(json.gridRecords))
+        }).then(function(){
+            dispatch(stopLoading());
+        })
+    }
+
 
     toggleActive(index){
         let {dispatch} = this.props;
@@ -108,12 +123,16 @@ GridRecord.propTypes = {
 };
 
 GridComponent.propTypes = {
-    records: PropTypes.array.isRequired
+    records: PropTypes.array.isRequired,
+    filtered: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        records: state.grid
+        records: state.grid.records,
+        filtered: state.grid.filtered,
+        loading: state.grid.loading
     }
 }
 
